@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <h1>Validação de CPF</h1>
+    <form method="post">
+        <label for="cpf">Digite seu CPF:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="cpf">Digite sua Senha:</label>
+        <input type="password" id="senha" name="senha" autocomplete="off" required>
+        {% if mensagem_cpf %}
+        <script>alert("{{ mensagem_login }}")</script>
+        {% endif %}
+        <button type="submit">Validar CPF</button>
+    </form>
+</body>
+
+</html>

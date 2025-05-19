@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash
 import re
 import pyodbc
 import pandas as pd
@@ -26,12 +26,14 @@ def criar_usuario(nome, email, senha):
     
     return bool(nome_valido) and bool(email_valido) and bool(senha_valida)
 
-##def validar_usuario(email, senha):
-   ##mudarpadrao_email = r'^[\w\.-]+@[\w\.-]+\.\w{2,}$'
-    ##email_validar = re.match(padrao_email, email)
+# def validar_usuario(email, senha):
+    # email_valido = """SELECT * FROM Usuarios WHERE Email = ? """
+    # validar_email = re.match(email_valido, email)
 
-    ##mudarcomando_senha = mudarsenha = f"""SELECT Senha FROM Usuarios WHERE Email = {padrao_email}"""
-    ##mudarcursor.execute(comando_senha, (email,))
+    # senha_valida = """SELECT * FROM Usuarios WHERE Senha = ?"""
+    # validar_senha = re.match(senha_valida, senha)
+
+    # return(validar_email, validar_senha)
     
 @app.route('/cadastro', methods=['GET', 'POST'])
 def index_cadastro():
@@ -41,12 +43,19 @@ def index_cadastro():
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
-        
+
         if criar_usuario(nome, email, senha):
-            comando_criar = """INSERT INTO Usuarios(Nome, Email, Senha) VALUES (?, ?, ?)"""
-            cursor.execute(comando_criar, (nome, email, senha))
-            conexao.commit()
-            mensagem_create = 'Usuário criado com sucesso'
+            cursor.execute("SELECT * FROM Usuarios WHERE Email = ?", (email))
+            usuario_existente = cursor.fetchone()
+
+            if usuario_existente:
+                mensagem_create = 'Email já cadastrado'
+            else:
+                comando_criar = """INSERT INTO Usuarios(Nome, Email, Senha) VALUES (?, ?, ?)"""
+                cursor.execute(comando_criar, (nome, email, senha))
+                conexao.commit()
+                mensagem_create = 'Usuário criado com sucesso'
+                return redirect(url_for('index_login'))
         else:
             mensagem_create = 'ERRO'
 
@@ -56,16 +65,24 @@ def index_cadastro():
 def index_login():
     mensagem_login = None
 
-    #if request.method == 'GET':
-        #email = request.form['email']
-        #senha = request.form['senha']
+    if request.method == 'POST':
+        email = request.form['email']
+        senha = request.form['senha']
 
-        #if validar_usuario(email, senha):
-        #    mensagem_login = 'Login realizado com sucesso!'
-        #else:
-        #   mensagem_login = 'Email ou senha inválidos'
+        cursor.execute("SELECT * FROM Usuarios WHERE Email = ? AND Senha = ?", (email, senha))
+        validar_usuario = cursor.fetchone()
+
+        if validar_usuario:
+            mensagem_login = 'Login realizado com sucesso'
+            return redirect(url_for('index_home'))
+        else:
+            mensagem_login = 'Email ou senha incorretos'
 
     return render_template('login.html', mensagem_login=mensagem_login)
+
+@app.route('/home')
+def index_home():
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

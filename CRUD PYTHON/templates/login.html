@@ -10,16 +10,16 @@
 
 <body>
     <h1>Login</h1>
-    <form method="get">
+    <form method="post">
         <label for="email">Digite seu Email:</label>
         <input type="email" id="email" name="email" required>
         <label for="senha">Digite sua Senha:</label>
         <input type="password" id="senha" name="senha" autocomplete="off" required>
-        {% if mensagem_cpf %}
-        <script>alert("{{ mensagem_login }}")</script>
-        {% endif %}
         <button type="submit">Entrar</button>
         <a href="/cadastro">Ir para cadastro</a>
+        {% if mensagem_login %}
+        <script>alert("{{ mensagem_login }}")</script>
+        {% endif %}
     </form>
 </body>
 

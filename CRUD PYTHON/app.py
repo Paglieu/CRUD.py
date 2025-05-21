@@ -1,9 +1,10 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, get_flashed_messages
 import re
 import pyodbc
 import pandas as pd
 
 app = Flask(__name__)
+app.secret_key = 'chave_secreta'
 
 dados_conexao = (
     "Driver={SQL Server};"
@@ -15,7 +16,7 @@ cursor = conexao.cursor()
 print("Conexão com o Banco de Dados bem sucedida")
 
 def criar_usuario(nome, email, senha):
-    padrao_nome = r'^[A-Za-zÀ-ÿ ]+$'
+    padrao_nome = r'^[A-Za-zÀ-ÿ]+$'
     nome_valido = re.match(padrao_nome, nome)
 
     padrao_email = r'^.+@.+$'
@@ -54,8 +55,8 @@ def index_cadastro():
                 comando_criar = """INSERT INTO Usuarios(Nome, Email, Senha) VALUES (?, ?, ?)"""
                 cursor.execute(comando_criar, (nome, email, senha))
                 conexao.commit()
-                mensagem_create = 'Usuário criado com sucesso'
                 return redirect(url_for('index_login'))
+                
         else:
             mensagem_create = 'ERRO'
 

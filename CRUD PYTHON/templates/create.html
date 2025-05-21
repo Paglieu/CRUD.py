@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}"/>
+    <link rel="stylesheet" href="/static/create.css">
     <title>Create</title>
 </head>
+
 <body>
-    <h1>Criar Conta</h1>
+    <h1>CRIAR CONTA</h1>
     <form method="post">
-        <label>Nome:</label>
-        <input type="nome" id="nome" name="nome" required>
-        <label>Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label>Senha:</label>
-        <input type="senha" id="senha" name="senha" required>
-        <button type="submit">Criar conta</button>
-        {% if mensagem_create %}
-        <script>alert("{{ mensagem_create }}")</script>
-        {% endif %}
+        <div class="create">
+            <label id="txt">NOME</label>
+            <input type="nome" class="inp" id="nome" name="nome" required>
+            <label id="txt">EMAIL</label>
+            <input type="email" class="inp" id="email" name="email" required>
+            <label id="txt">SENHA</label>
+            <input type="senha" class="inp" id="senha" name="senha" required>
+            <button type="submit" class="botao">Criar conta</button>
+            <label id="txt2">Clique <a href="/">aqui</a> para voltar</label>
+            {% if mensagem_create %}
+                <script>alert("{{ mensagem_create }}")</script>
+            {% endif %}
+        </div>
     </form>
 </body>
+
 </html>

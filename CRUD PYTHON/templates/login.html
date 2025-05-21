@@ -5,22 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}"/>
+    <link rel="stylesheet" href="/static/login.css">
     <title>Login</title>
 </head>
 
 <body>
-    <h1>Login</h1>
+    <h1>LOGIN</h1>
     <form method="post">
-        <label for="email">Digite seu Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="senha">Digite sua Senha:</label>
-        <input type="password" id="senha" name="senha" autocomplete="off" required>
-        <button type="submit">Entrar</button>
-        <a href="/cadastro">Ir para cadastro</a>
-        {% if mensagem_login %}
-        <script>alert("{{ mensagem_login }}")</script>
-        {% endif %}
+        <div class="login">
+            <label for="email" id="txt">EMAIL</label>
+            <input type="email" class="inp" id="email" name="email" required>
+            <label for="senha" id="txt">SENHA</label>
+            <input type="password" class="inp" id="senha" name="senha" autocomplete="off" required>
+            <button type="submit" class="botao">ENTRAR</button>
+            <label id="txt2">Clique <a href="/cadastro">aqui</a> para criar uma conta</label>
+            {% if mensagem_login %}
+                <script>alert("{{ mensagem_login }}")</script>
+            {% endif %}
+        </div>
     </form>
+    
 </body>
 
 </html>

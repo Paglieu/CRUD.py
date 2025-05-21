@@ -1,0 +1,79 @@
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background-image:url('/static/images/background_login.png');
+    background-size: cover;
+    justify-content: center;
+    justify-items: center;
+}
+
+h1 {
+    font-size: 90px;
+}
+
+.create {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 20px;
+    padding-top: 50px;
+    background-color: white;
+    width: 40vh;
+    height: 50vh;
+    border-radius: 10px;
+}
+
+#txt {
+    justify-content: center;
+    justify-items: center;
+    padding-top: 20px;
+    font-size: 25px;
+    color: gray;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.inp {
+    font-size: 15px;
+    width: 250px;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style:groove ;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: ghostwhite;
+}
+
+.botao {
+    margin-top: 40px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 40px;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    background-image: url('/static/images/background_login.png');
+    border: none;
+    border-radius: 20px;
+}
+
+.botao:hover {
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+#txt2 {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    color: gray;
+    margin-top: 50px;
+}

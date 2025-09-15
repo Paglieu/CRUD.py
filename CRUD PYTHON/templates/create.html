@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}"/>
-    <link rel="stylesheet" href="/static/create.css">
+    <link rel="stylesheet" href="/static/global.css">
     <title>Create</title>
 </head>
 
@@ -20,7 +20,7 @@
             <input type="email" class="inp" id="email" name="email" required>
             <label id="txt">SENHA</label>
             <input type="senha" class="inp" id="senha" name="senha" required>
-            <button type="submit" class="botao">Criar conta</button>
+            <button type="submit" class="botao">CRIAR CONTA</button>
             <label id="txt2">Clique <a href="/">aqui</a> para voltar</label>
             {% if mensagem_create %}
                 <script>alert("{{ mensagem_create }}")</script>

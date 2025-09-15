@@ -81,7 +81,7 @@ def index_login():
 
     return render_template('login.html', mensagem_login=mensagem_login)
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def index_home():
     return render_template('home.html')
 
